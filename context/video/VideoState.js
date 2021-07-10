@@ -1,28 +1,24 @@
 import { useReducer } from 'react';
-import GifContext from './gifContext';
-import GifReducer from './gifReducer';
+import VideoContext from './VideoContext';
+import VideoReducer from './VideoReducer';
 import {
-  SET_GIF,
-  SET_GIF_END,
-  SET_GIF_START,
+  SET_MEDIA_PRESENT,
   SET_LOADING,
   SET_PERCENTAGE_COMPLETION,
   SET_VIDEO,
   SET_VIDEO_DURATION,
 } from '../types';
 
-const GifState = (props) => {
+const VideoState = (props) => {
   const initialState = {
     video: null,
     videoDuration: 0,
-    gif: null,
-    gifStart: 0,
-    gifEnd: 1,
+    mediaPresent: false,
     loading: false,
     percentageCompletion: 0,
   };
 
-  const [state, dispatch] = useReducer(GifReducer, initialState);
+  const [state, dispatch] = useReducer(VideoReducer, initialState);
 
   const setVideo = (video) => {
     dispatch({
@@ -36,22 +32,10 @@ const GifState = (props) => {
       payload: videoDuration,
     });
   };
-  const setGif = (gif) => {
+  const setMediaPresent = (mediaPresent) => {
     dispatch({
-      type: SET_GIF,
-      payload: gif,
-    });
-  };
-  const setGifStart = (gifStart) => {
-    dispatch({
-      type: SET_GIF_START,
-      payload: gifStart,
-    });
-  };
-  const setGifEnd = (gifEnd) => {
-    dispatch({
-      type: SET_GIF_END,
-      payload: gifEnd,
+      type: SET_MEDIA_PRESENT,
+      payload: mediaPresent,
     });
   };
   const setLoading = (isLoading) => {
@@ -68,27 +52,23 @@ const GifState = (props) => {
   };
 
   return (
-    <GifContext.Provider
+    <VideoContext.Provider
       value={{
         video: state.video,
         videoDuration: state.videoDuration,
-        gif: state.gif,
-        gifStart: state.gifStart,
-        gifEnd: state.gifEnd,
+        mediaPresent: state.mediaPresent,
         loading: state.loading,
         percentageCompletion: state.percentageCompletion,
         setVideo,
         setVideoDuration,
-        setGif,
-        setGifStart,
-        setGifEnd,
+        setMediaPresent,
         setLoading,
         setPercentageCompletion,
       }}
     >
       {props.children}
-    </GifContext.Provider>
+    </VideoContext.Provider>
   );
 };
 
-export default GifState;
+export default VideoState;

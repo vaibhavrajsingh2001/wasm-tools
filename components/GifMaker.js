@@ -1,26 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import {
   TrashIcon,
   ArrowCircleRightIcon,
   ArrowCircleDownIcon,
 } from '@heroicons/react/solid';
-import GifContext from '../context/gif/gifContext';
+import VideoContext from '../context/video/VideoContext';
 import { loadFFmpeg, ffmpeg, convertToGif } from '../components/helper';
 
 const GifMaker = () => {
-  const gifContext = useContext(GifContext);
+  const videoContext = useContext(VideoContext);
   const {
     video,
     videoDuration,
-    setGif,
-    gif,
+    setMediaPresent,
     percentageCompletion,
     setPercentageCompletion,
     loading,
     setLoading,
-  } = gifContext;
+  } = videoContext;
+
+  const [gif, setGif] = useState(null);
 
   const [values, setValues] = useState([0, videoDuration]);
   const STEP = 1;
@@ -36,6 +37,7 @@ const GifMaker = () => {
     const gifUrl = await convertToGif(values[0], values[1], video);
     setLoading(false);
     setGif(gifUrl);
+    setMediaPresent(true);
   };
 
   useEffect(() => {
@@ -80,7 +82,9 @@ const GifMaker = () => {
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-        <h1 className="mx-auto font-semibold text-3xl">{percentageCompletion} %</h1>
+        <h1 className="mx-auto font-semibold text-3xl">
+          {percentageCompletion} %
+        </h1>
       </div>
     );
   }

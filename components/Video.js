@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import GifContext from '../context/gif/gifContext';
+import VideoContext from '../context/video/VideoContext';
 
 const Video = () => {
-  const gifContext = useContext(GifContext);
-  const { video, setVideo, setVideoDuration, gif, loading } = gifContext;
+  const videoContext = useContext(VideoContext);
+  const { video, setVideo, setVideoDuration, mediaPresent, loading } = videoContext;
 
   const handleVideoInput = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const Video = () => {
     setVideo(null);
   };
 
-  if (gif || loading) {
+  if (mediaPresent || loading) {
     return (null);
   }
 

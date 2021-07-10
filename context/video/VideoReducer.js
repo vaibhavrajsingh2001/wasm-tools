@@ -1,14 +1,12 @@
 import {
-  SET_GIF,
-  SET_GIF_END,
-  SET_GIF_START,
+  SET_MEDIA_PRESENT,
   SET_LOADING,
   SET_PERCENTAGE_COMPLETION,
   SET_VIDEO,
   SET_VIDEO_DURATION,
 } from '../types';
 
-const GifReducer = (state, action) => {
+const VideoReducer = (state, action) => {
   switch (action.type) {
     case SET_VIDEO:
       return {
@@ -20,20 +18,10 @@ const GifReducer = (state, action) => {
         ...state,
         videoDuration: action.payload,
       };
-    case SET_GIF:
+    case SET_MEDIA_PRESENT:
       return {
         ...state,
-        gif: action.payload,
-      };
-    case SET_GIF_START:
-      return {
-        ...state,
-        gifStart: action.payload,
-      };
-    case SET_GIF_END:
-      return {
-        ...state,
-        gifEnd: action.payload,
+        mediaPresent: action.payload,
       };
     case SET_LOADING:
       return {
@@ -51,4 +39,4 @@ const GifReducer = (state, action) => {
   }
 };
 
-export default GifReducer;
+export default VideoReducer;
