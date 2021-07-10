@@ -45,3 +45,24 @@ export const convertToGif = async (gifStart, gifEnd, video) => {
 
   return gifURL;
 };
+
+export const extractAudio = async (video) => {
+  ffmpeg.FS('writeFile', 'temp.mp4', await fetchFile(video));
+
+  await ffmpeg.run(
+    '-i',
+    'temp.mp4',
+    '-vn',
+    '-acodec',
+    'libvorbis',
+    'output.ogg'
+  );
+
+  const audioData = ffmpeg.FS('readFile', 'output.ogg');
+
+  const audioUrl = URL.createObjectURL(
+    new Blob([audioData.buffer], { type: 'audio/ogg' })
+  );
+
+  return audioUrl;
+};
