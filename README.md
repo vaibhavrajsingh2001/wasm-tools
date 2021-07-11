@@ -1,4 +1,8 @@
+![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=wasm-tools)
+
 # WASM TOOLS
+
+[wasm.vaibhavraj.dev](https://wasm.vaibhavraj.dev/)
 
 A collection of small tools that I usually use for minor tasks with video or audio media.
 

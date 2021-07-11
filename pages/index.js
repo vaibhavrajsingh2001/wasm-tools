@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const actions = [
   {
@@ -49,13 +50,15 @@ export default function Home() {
               ></Image>
             </div>
             <div className="mt-8">
-              <h3 className="text-2xl font-medium text-black">
-                <a href={action.href} className="focus:outline-none">
-                  {/* Extend touch target to entire panel */}
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  {action.title}
-                </a>
-              </h3>
+              <Link href={action.href} passHref>
+                <h3 className="text-2xl font-medium text-black cursor-pointer">
+                  <a className="focus:outline-none">
+                    {/* Extend touch target to entire panel */}
+                    <span className="absolute inset-0" aria-hidden="true" />
+                    {action.title}
+                  </a>
+                </h3>
+              </Link>
               <p className="mt-2 text-sm text-gray-500">{action.content}</p>
             </div>
             <span

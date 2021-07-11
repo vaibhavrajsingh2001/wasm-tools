@@ -2,7 +2,7 @@ import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
 export const ffmpeg = createFFmpeg({
   corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js',
-  log: false,
+  log: true,
 });
 
 export const loadFFmpeg = async () => {
@@ -13,8 +13,10 @@ export const loadFFmpeg = async () => {
 
 export const convertToGif = async (gifStart, gifEnd, video) => {
   const gifDuration = gifEnd - gifStart;
+  const {name} = video;
+  console.log(name);
   // FFmpeg manages its own file system, so load file into it & name it something
-  ffmpeg.FS('writeFile', 'temp.mp4', await fetchFile(video));
+  ffmpeg.FS('writeFile', name, await fetchFile(video));
 
   /*
   Run FFmpeg command (works similar to CLI, pass values to flag)
@@ -25,7 +27,7 @@ export const convertToGif = async (gifStart, gifEnd, video) => {
   */
   await ffmpeg.run(
     '-i',
-    'temp.mp4',
+    name,
     '-t',
     `${gifDuration}`,
     '-ss',

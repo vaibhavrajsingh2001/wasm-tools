@@ -58,9 +58,7 @@ const GifMaker = () => {
   }, []);
 
   ffmpeg.setProgress(({ ratio }) => {
-    if (ratio <= 1) {
-      setPercentageCompletion(Math.floor(ratio * 100));
-    }
+    setPercentageCompletion(Math.round(ratio * 100));
   });
 
   if (loading) {
