@@ -51,19 +51,23 @@ const GifMaker = () => {
     setLoading(true);
     loadFFmpeg();
     setLoading(false);
+
+    return () => {
+      setMediaPresent(false);
+    };
   }, []);
 
   ffmpeg.setProgress(({ ratio }) => {
-    if (ratio < 0.1) {
-      setPercentageCompletion(Math.floor(ratio * 1000));
+    if (ratio <= 1) {
+      setPercentageCompletion(Math.floor(ratio * 100));
     }
   });
 
   if (loading) {
     return (
-      <div className="flex flex-col space-y-3">
+      <div className="flex flex-col items-center space-y-3">
         <svg
-          className="animate-spin -ml-1 mr-3 h-24 w-24 text-blue-400"
+          className="animate-spin mr-3 h-24 w-24 text-blue-400"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -97,7 +101,7 @@ const GifMaker = () => {
             type="button"
             download="result"
             href={gif}
-            className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="inline-flex items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Download GIF
             <ArrowCircleDownIcon
@@ -198,7 +202,7 @@ const GifMaker = () => {
               <button
                 type="button"
                 onClick={runConverter}
-                className="flex-initial inline-flex items-center px-3 py-1.5 lg:px-4 lg:py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="flex-initial inline-flex items-center px-3 py-1.5 lg:px-4 lg:py-2 text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Create GIF
                 <ArrowCircleRightIcon

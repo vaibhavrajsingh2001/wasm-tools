@@ -1,11 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { Disclosure} from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const Navbar = () => {
   return (
@@ -16,30 +12,29 @@ const Navbar = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
-                    className="block lg:hidden h-10 w-auto"
-                    width="35px"
-                    height="32px"
-                    src="/logo.svg"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-10 w-auto"
-                    width="35px"
-                    height="32px"
-                    src="/logo-full.svg"
-                    alt="Workflow"
-                  />
+                  <Link href="/" passHref>
+                    <img
+                      className="block h-10 w-auto cursor-pointer"
+                      width="35px"
+                      height="32px"
+                      src="/logo.svg"
+                      alt="Workflow"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                      <Link href="/gif">GIF Maker</Link>
-                    </span>
-                    <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
-                      <Link href="/audio">Audio Extractor</Link>
-                    </span>
+                    <Link href="/gif" passHref>
+                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium cursor-pointer">
+                        GIF Maker
+                      </span>
+                    </Link>
+                    <Link href="/audio" passHref>
+                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium cursor-pointer">
+                        Audio Extractor
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>

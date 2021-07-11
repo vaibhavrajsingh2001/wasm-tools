@@ -29,7 +29,7 @@ const Video = () => {
     <>
       {!video && (
         <>
-          <label className="w-64 flex flex-col items-center my-auto px-4 py-6 bg-white text-blue-400 rounded-lg shadow-lg tracking-wide uppercase border border-blue-200 cursor-pointer hover:bg-blue-300 hover:text-white">
+          <label className="transform w-64 flex flex-col items-center my-auto px-4 py-6 bg-white text-blue-400 rounded-lg shadow-lg tracking-wide uppercase border border-blue-200 cursor-pointer transition duration-200 hover:bg-blue-400 hover:text-white hover:scale-125">
             <svg
               className="w-8 h-8"
               fill="currentColor"
@@ -52,8 +52,8 @@ const Video = () => {
       )}
 
       {video && (
-        <div className="flex flex-col items-center mt-8">
-          <span className="mb-2 inline-flex rounded-full items-center py-1 pl-2.5 pr-1 text-sm font-medium bg-blue-100 text-blue-700">
+        <div className="flex flex-col items-center">
+          <span className="mb-4 inline-flex rounded-full items-center py-1 pl-2.5 pr-1 text-sm font-medium bg-blue-100 text-blue-700">
             {video.name}
             <button
               type="button"

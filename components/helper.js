@@ -2,7 +2,7 @@ import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
 export const ffmpeg = createFFmpeg({
   corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js',
-  log: true,
+  log: false,
 });
 
 export const loadFFmpeg = async () => {
@@ -54,14 +54,14 @@ export const extractAudio = async (video) => {
     'temp.mp4',
     '-vn',
     '-acodec',
-    'libvorbis',
-    'output.ogg'
+    'libmp3lame',
+    'output.mp3'
   );
 
-  const audioData = ffmpeg.FS('readFile', 'output.ogg');
+  const audioData = ffmpeg.FS('readFile', 'output.mp3');
 
   const audioUrl = URL.createObjectURL(
-    new Blob([audioData.buffer], { type: 'audio/ogg' })
+    new Blob([audioData.buffer], { type: 'audio/mpeg' })
   );
 
   return audioUrl;

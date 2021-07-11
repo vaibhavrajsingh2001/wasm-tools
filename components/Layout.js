@@ -1,10 +1,13 @@
 import Navbar from './Navbar';
+import VideoState from '../context/video/VideoState';
 
 const Layout = ({ children }) => {
   return (
     <div className="w-full h-screen flex flex-col">
       <Navbar />
-      <div className="flex-grow">{children}</div>
+      <VideoState>
+        <div className="flex-grow svg-background text-white">{children}</div>
+      </VideoState>
     </div>
   );
 };

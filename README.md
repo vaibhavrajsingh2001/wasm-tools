@@ -8,9 +8,6 @@ Features:
 - [x] Video to GIF converter
 - [x] Audio Extractor
 
-To-Do:
-- [ ] Create landing page
-
 ## Getting Started
 
 First, run the development server:

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.svg-background {
+  background: url('/background.svg');
+  background-attachment: fixed;
+  background-size: cover;
+}
